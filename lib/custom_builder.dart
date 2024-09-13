@@ -10,7 +10,7 @@ class CustomBuilder<T> extends StatefulWidget {
     super.key,
   });
 
-  final Future<bool> Function()? when;
+  final Future<bool> Function(T value)? when;
 
   final CustomNotifier<T> notifier;
 
@@ -33,7 +33,7 @@ class _CustomBuilderState<T> extends State<CustomBuilder<T>> {
 
   void _callback() {
     if (widget.when == null) setState(() {});
-    widget.when?.call().then((bool shouldUpdate) {
+    widget.when?.call(widget.notifier.value).then((bool shouldUpdate) {
       if (!shouldUpdate) return;
       setState(() {});
     });

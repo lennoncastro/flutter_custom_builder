@@ -37,8 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ..._options.map((int option) {
               return CustomBuilder(
                 notifier: _counter,
-                when: () async =>
-                    _counter.value > 0 && _counter.value % option == 0,
+                when: (int value) async =>
+                value > 0 && value % option == 0,
                 (_, int value) => Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: Text(
